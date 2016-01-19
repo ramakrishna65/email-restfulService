@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<context:component-scan base-package="com.smartweights.mail.*" />
+
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/view/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="email-smtp.us-east-1.amazonaws.com" />
+		<property name="port" value="465"/>
+		<property name="protocol" value="smtps"/>
+		<property name="username" value="AKIAI5JWLF4B76LBDOTQ"/>
+		<property name="password" value="Avf08grworbZn+B3FUL119IhLbOb5tPzh8z+P6hBbWGl"/>
+
+		<!-- The name of the property, following JavaBean naming conventions -->
+		<property name="javaMailProperties">
+			<props>				
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.ssl.enable">true</prop>
+				<!-- <prop key="mail.smtp.starttls.enable">true</prop> -->
+				<prop key="mail.smtp.starttls.required">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>
